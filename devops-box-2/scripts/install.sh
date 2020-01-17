@@ -8,12 +8,12 @@ if [ -e /etc/redhat-release ] ; then
 fi
 
 RUBY_VERSION="2.3.1p112"
-TERRAFORM_VERSION="0.11.14"
-PACKER_VERSION="1.3.2"
-ANSIBLE_VERSION="2.6.7"
-RKE_VERSION="v0.1.15"
-NJ_VERSION="11"
-KOPS_VERSION="1.14.0"
+TERRAFORM_VERSION="0.12.19"
+PACKER_VERSION="1.5.1"
+ANSIBLE_VERSION="2.9.2"
+RKE_VERSION="v1.0.2"
+NJ_VERSION="12.14.1"
+KOPS_VERSION="1.15.0"
 JX_VERSION="2.0.152"
 # create new ssh key
 [[ ! -f /home/ubuntu/.ssh/mykey ]] \
