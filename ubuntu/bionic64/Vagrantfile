@@ -1,0 +1,26 @@
+Vagrant.configure(2) do |config|
+	config.vm.define "devops" do |bionic64|
+	config.vm.synced_folder "~/DevOps","/home/vagrant/DevOps"
+	config.vm.synced_folder "~/.aws","/home/vagrant/.aws"
+	  bionic64.vm.box = "ubuntu/bionic64"
+	  bionic64.vm.network "private_network", ip: "192.168.199.10"
+		bionic64.vm.hostname = "devops-box-bionic64"
+		bionic64.vm.provision "shell", path: "scripts/install.sh"
+		bionic64.vm.provision "shell", path: "scripts/cron.sh"
+		bionic64.vm.provider "virtualbox" do |v|
+                        # set timesync parameters to keep the clocks better in sync
+                        # sync time every 10 seconds
+                        v.customize [ "guestproperty", "set", :id, "/v/GuestAdd/VBoxService/--timesync-interval", 10000 ]
+                        # adjustments if drift > 100 ms
+                        v.customize [ "guestproperty", "set", :id, "/v/GuestAdd/VBoxService/--timesync-min-adjust", 100 ]
+                        # sync time on restore
+                        v.customize [ "guestproperty", "set", :id, "/v/GuestAdd/VBoxService/--timesync-set-on-restore", 1 ]
+                        # sync time on start
+                        v.customize [ "guestproperty", "set", :id, "/v/GuestAdd/VBoxService/--timesync-set-start", 1 ]
+                        # at 1 second drift, the time will be set and not "smoothly" adjusted
+                        v.customize [ "guestproperty", "set", :id, "/v/GuestAdd/VBoxService/--timesync-set-threshold", 1000 ]
+			v.memory = 4096
+			v.cpus = 2
+		end
+	end
+end
