@@ -12,7 +12,7 @@ TERRAFORM_VERSION="0.12.19"
 PACKER_VERSION="1.5.1"
 ANSIBLE_VERSION="2.9.2"
 RKE_VERSION="v1.0.2"
-NJ_VERSION="12.14.1"
+NJO_VERSION="12.14.1"
 KOPS_VERSION="1.15.0"
 JX_VERSION="2.0.152"
 # create new ssh key
@@ -98,8 +98,8 @@ RK_RETVAL=$?
 NJ_VERSION=$(/usr/bin/nodejs --version| head -1 | cut -d ' ' -f 2 | tail -c +2)
 NJ_RETVAL=$?
 
-[[ $NJ_VERSION != $NJ_VERSION ]] || [[ $NJ_RETVAL != 1 ]] \
-&& curl -sL https://deb.nodesource.com/setup_11.x | sudo -E bash - \
+[[ $NJ_VERSION != $NJO_VERSION ]] || [[ $NJ_RETVAL != 1 ]] \
+&& curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - \
 && sudo apt-get install -y nodejs
 
 #ruby
