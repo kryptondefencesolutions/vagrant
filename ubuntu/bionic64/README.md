@@ -7,3 +7,7 @@
 * Ansible via pip
 * aws2fa
 * packer
+* nodejs version 12.x
+* ruby
+* RKE (Rancher)
+* KOPS (Kubernetes)
